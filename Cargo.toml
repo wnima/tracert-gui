@@ -1,0 +1,40 @@
+[package]
+name = "tracert-gui"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Windows API
+winapi = { version = "0.3", features = ["winbase", "processthreadsapi", "securitybaseapi", "handleapi", "impl-default", "winerror", "winnt", "minwindef"] }
+windows = { version = "0.62.2", features = ["Win32_Foundation", "Win32_Security", "Win32_System_Threading", "Win32_System_Com", "Win32_System_Variant", "Win32_System_SystemServices", "Win32_System_Ole", "Win32_System_Com_StructuredStorage", "Win32_NetworkManagement", "Win32_NetworkManagement_WindowsFirewall"] }
+
+# GUI框架
+iced = { version = "0.12.1", features = ["tokio", "canvas", "image", "svg", "advanced"] }
+
+# 异步运行时
+tokio = { version = "1.48.0", features = ["full", "rt"] }
+
+# 序列化/反序列化
+serde = { version = "1.0.228", features = ["derive"] }
+
+# 错误处理
+anyhow = "1.0.100"
+
+# 日志
+log = "0.4.29"
+env_logger = "0.11.8"
+
+ipdb-rust = "0.1.4"
+socket2 = { version = "0.6.1", features = ["all"] }
+image = "0.25.9"
+
+[[bin]]
+name = "tracert-gui"
+path = "src/main.rs"
+
+[build-dependencies]
+embed-resource = "3.0.6"
+ureq = "3.1.4"
+
+[profile.release]
+debug = false
